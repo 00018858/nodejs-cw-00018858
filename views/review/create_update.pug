@@ -1,0 +1,36 @@
+extends ../layout.pug
+
+block content
+  .container.mt-4
+    - var formAction = review && review.id ? `/review/update/${review.id}` : '/review/create'
+    - var formTitle = review && review.id ? 'Update Book Review' : 'Create Book Review'
+
+    h1.mb-4= formTitle
+
+    // Display validation errors, if any
+    if errors && errors.length
+      .alert.alert-danger
+        ul
+          each err in errors
+            li= err.msg
+
+    form(method='post', action=formAction)
+      if review && review.id
+        input(type='hidden', name='id', value=review.id)      
+      .mb-3
+        label.form-label(for='title') Title
+        input.form-control(type='text', id='title', name='title', required, value=review ? review.title : '')     
+      .mb-3
+        label.form-label(for='author') Author
+        input.form-control(type='text', id='author', name='author', required, value=review ? review.author : '')      
+      .mb-3
+        label.form-label(for='genre') Genre
+        input.form-control(type='text', id='genre', name='genre', required, value=review ? review.genre : '')    
+      .mb-3
+        label.form-label(for='rating') Rating
+        input.form-control(type='number', id='rating', name='rating', min='1', max='5', required, value=review ? review.rating : '')     
+      .mb-3
+        label.form-label(for='insight') Insight
+        textarea.form-control(id='insight', name='insight')= review ? review.insight : ''
+      
+      button.btn.btn-primary(type='submit') Submit

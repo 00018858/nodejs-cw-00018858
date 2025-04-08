@@ -1,0 +1,27 @@
+extends ../layout.pug
+
+block content
+  .container.mt-4
+    h1.mb-4 Book Reviews
+    a.btn.btn-primary.mb-3(href='/review/create') Add New Review
+    table.table.table-striped
+      thead
+        tr
+          th ID
+          th Title
+          th Author
+          th Genre
+          th Rating
+          th Actions
+      tbody
+        each review in reviews
+          tr
+            td= review.id
+            td= review.title
+            td= review.author
+            td= review.genre
+            td= review.rating
+            td
+              a.btn.btn-warning.btn-sm.mr-2(href=`/review/update/${review.id}`) Update
+              span &nbsp;
+              a.btn.btn-danger.btn-sm(href=`/review/delete/${review.id}`) Delete
