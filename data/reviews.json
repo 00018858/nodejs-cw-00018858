@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "id": 1,
+    "title": "The Silent Patient",
+    "author": "Alex Michaelides",
+    "genre": "Physological Thriller ",
+    "rating": "5",
+    "insight": "Amazing plot twist"
+  }
+]
